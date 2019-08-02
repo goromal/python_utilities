@@ -1,0 +1,7 @@
+*.pyc
+pylib/CMakeFiles/*
+pylib/lib/*
+pylib/*.cmake
+pylib/CMakeCache.txt
+pylib/Makefile
+pylib/*.so
