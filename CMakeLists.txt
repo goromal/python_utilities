@@ -13,3 +13,4 @@ include_directories(
 pybind11_add_module(utils_logging src/utils_plugins/logging.cpp)
 pybind11_add_module(utils_quat    src/utils_plugins/quat.cpp)
 pybind11_add_module(utils_xform   src/utils_plugins/xform.cpp)
+pybind11_add_module(utils_support src/utils_plugins/support.cpp)
