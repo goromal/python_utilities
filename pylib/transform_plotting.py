@@ -16,8 +16,37 @@ def active_transform_points(transform, orig_points):
     return trans_points
 
 class mesh_plotter_3D(object):
-    def __init__(self, title="3D Plot", xlim=[-10.0, 10.0], xlabel="X", ylim=[-10.0, 10.0], ylabel="Y",
-                 zlim=[0.0, 10.0], zlabel="Z"):
+    def __init__(self, **kwargs):
+        # parse kwargs
+        if 'title' in kwargs:
+            title = kwargs['title']
+        else:
+            title = '3D Plot'
+        if 'xlim' in kwargs:
+            xlim = kwargs['xlim']
+        else:
+            xlim = [-10.0, 10.0]
+        if 'xlabel' in kwargs:
+            xlabel = kwargs['xlabel']
+        else:
+            xlabel = 'X'
+        if 'ylim' in kwargs:
+            ylim = kwargs['ylim']
+        else:
+            ylim = [-10.0, 10.0]
+        if 'ylabel' in kwargs:
+            ylabel = kwargs['ylabel']
+        else:
+            ylabel = 'Y'
+        if 'zlim' in kwargs:
+            zlim = kwargs['zlim']
+        else:
+            zlim = [0.0, 10.0]
+        if 'zlabel' in kwargs:
+            zlabel = kwargs['zlabel']
+        else:
+            zlabel = 'Z'
+        # initialize class
         self.meshes = []
         self.transforms = []
         self.n = -1

@@ -28,6 +28,6 @@ for i in range(0, n):
 
 # Quadrotor animation from T_UAV_0
 meshfile = os.path.join(PWD,'..','meshes','quadrotor.json')
-plotter = mesh_plotter_3D(title='UAV Animation')
+plotter = mesh_plotter_3D(title='UAV Animation',xlabel='North',ylabel='West',zlabel='Up')
 plotter.add_mesh(meshfile, T_UAV_0)
 plotter.animate()
