@@ -57,6 +57,7 @@ class mesh_plotter_3D(object):
         # initialize class
         self.meshes = []
         self.transforms = []
+        self.scales = []
         self.n = -1
         self.fig = plt.figure(figsize=(fig_width_in, fig_height_in))
         self.ax = p3.Axes3D(self.fig) # <<<< ACCESSIBLE TO OUTSIDE <<<< ++ add method for adding lines ++
@@ -68,7 +69,7 @@ class mesh_plotter_3D(object):
         self.ax.set_zlim3d(zlim)
         self.ax.set_zlabel(zlabel)
         self.meshAdded = False
-    def add_mesh(self, mesh_json, xform_matrix):
+    def add_mesh(self, mesh_json, xform_matrix, scale_factors=None):
         with open(mesh_json, 'r') as meshfile:
             mesh = json.load(meshfile)
         mesh_data = {}
@@ -94,13 +95,18 @@ class mesh_plotter_3D(object):
         self.transforms.append(xform_matrix)
         if self.n == -1:
             self.n = xform_matrix.shape[1]
+        if not scale_factors is None:
+            self.scales.append(scale_factors)
+        else:
+            self.scales.append(np.ones(self.n))
         self.meshAdded = True
     def update_plot(self, i):
-        for mesh, transformset in zip(self.meshes, self.transforms):
+        for mesh, transformset, scaleset in zip(self.meshes, self.transforms, self.scales):
             transform = Xform(transformset[:, i])
+            scale = scaleset[i]
             for pointset, line in zip(mesh["points"], mesh["lines"]):
                 # transform_points, set line data
-                tr_points = active_transform_points(transform, pointset)
+                tr_points = active_transform_points(transform, scale * pointset)
                 line.set_data(tr_points[0:2,:])
                 line.set_3d_properties(tr_points[2,:])
     def animate(self):
