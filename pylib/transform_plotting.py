@@ -46,11 +46,19 @@ class mesh_plotter_3D(object):
             zlabel = kwargs['zlabel']
         else:
             zlabel = 'Z'
+        if 'fig_width_in' in kwargs:
+            fig_width_in = kwargs['fig_width_in']
+        else:
+            fig_width_in = 8
+        if 'fig_height_in' in kwargs:
+            fig_height_in = kwargs['fig_height_in']
+        else:
+            fig_height_in = 6
         # initialize class
         self.meshes = []
         self.transforms = []
         self.n = -1
-        self.fig = plt.figure()
+        self.fig = plt.figure(figsize=(fig_width_in, fig_height_in))
         self.ax = p3.Axes3D(self.fig) # <<<< ACCESSIBLE TO OUTSIDE <<<< ++ add method for adding lines ++
         self.ax.set_title(title)
         self.ax.set_xlim3d(xlim)
