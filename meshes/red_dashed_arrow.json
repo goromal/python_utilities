@@ -1,0 +1,21 @@
+{
+  "objects": [
+    {
+      "points": [0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
+      "linecolor": "red",
+      "linestyle": "--",
+      "linewidth": 2.0
+    },
+    {
+      "points": [0.975, 0.0, 0.025, 1.0, 0.0, 0.0, 0.975, 0.0, -0.025],
+      "linecolor": "red",
+      "linestyle": "-",
+      "linewidth": 2.0
+    },
+    {
+      "points": [0.975, 0.025, 0.0, 1.0, 0.0, 0.0, 0.975, -0.025, 0.0],
+      "linecolor": "red",
+      "linestyle": "-",
+      "linewidth": 2.0
+    }]
+}

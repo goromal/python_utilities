@@ -4,7 +4,7 @@
       "points": [0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
       "linecolor": "red",
       "linestyle": "-",
-      "linewidth": 1.5
+      "linewidth": 1.5,
     },
     {
       "points": [0.0, 0.0, 0.0, 0.0, 1.0, 0.0],

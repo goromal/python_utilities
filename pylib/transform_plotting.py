@@ -6,6 +6,8 @@ import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.animation as animation
 import utils_xform
 from utils_xform import Xform
+from utils_quat import from_two_unit_vectors
+from utils_quat import Identity as quat_identity
 import json
 
 def active_transform_points(transform, orig_points):
@@ -14,6 +16,18 @@ def active_transform_points(transform, orig_points):
     for i in range(0, n):
         trans_points[:, i] = transform.transforma(orig_points[:, i])
     return trans_points
+
+# NOTE: this function works with the assumption that mesh arrow definitions start
+#       at the origin and have their arrow at +x = 1
+def arrow_plot_data_3D(origin, arrow_vector):
+    T = np.zeros((7, 1))
+    vector_len = np.linalg.norm(arrow_vector)
+    T[:3] = origin.reshape(3,1)
+    if vector_len > 0:
+        T[3:] = from_two_unit_vectors([1, 0, 0], arrow_vector / vector_len).elements().reshape(4,1)
+    else:
+        T[3:] = quat_identity().elements().reshape(4,1)
+    return T, vector_len
 
 class mesh_plotter_3D(object):
     def __init__(self, **kwargs):
@@ -91,6 +105,7 @@ class mesh_plotter_3D(object):
                 linewidth=obj["linewidth"], color=obj["linecolor"])[0])
             # NOTE: supported colors = [blue, green, red, cyan, magenta, yellow,
             #                           black, white]
+            #       supported styles = [...]
         self.meshes.append(mesh_data)
         self.transforms.append(xform_matrix)
         if self.n == -1:
