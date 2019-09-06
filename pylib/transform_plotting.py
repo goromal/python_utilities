@@ -68,6 +68,10 @@ class mesh_plotter_3D(object):
             fig_height_in = kwargs['fig_height_in']
         else:
             fig_height_in = 6
+        if 'show_ticks' in kwargs:
+            show_ticks = kwargs['show_ticks']
+        else:
+            show_ticks = True
         # initialize class
         self.meshes = []
         self.transforms = []
@@ -77,11 +81,25 @@ class mesh_plotter_3D(object):
         self.ax = p3.Axes3D(self.fig) # <<<< ACCESSIBLE TO OUTSIDE <<<< ++ add method for adding lines ++
         self.ax.set_title(title)
         self.ax.set_xlim3d(xlim)
+        xrange = xlim[1] - xlim[0]
         self.ax.set_xlabel(xlabel)
         self.ax.set_ylim3d(ylim)
+        yrange = ylim[1] - ylim[0]
         self.ax.set_ylabel(ylabel)
         self.ax.set_zlim3d(zlim)
+        zrange = zlim[1] - zlim[0]
         self.ax.set_zlabel(zlabel)
+        if not show_ticks:
+            self.ax.get_xaxis().set_ticks([])
+            self.ax.get_yaxis().set_ticks([])
+            self.ax.get_zaxis().set_ticks([])
+        maxrange = 1.0 * max([xrange, yrange, zrange])
+        # NOTE: to get the following pbaspect line to work: make the following edits to
+        #       site-packages/mpl_toolkits/mplot3d/axes3d.py:get_proj():
+        # xmin, xmax = np.divide(self.get_xlim3d(), self.pbaspect[0])
+        # ymin, ymax = np.divide(self.get_ylim3d(), self.pbaspect[1])
+        # zmin, zmax = np.divide(self.get_zlim3d(), self.pbaspect[2])
+        self.ax.pbaspect = [xrange/maxrange, yrange/maxrange, zrange/maxrange]
         self.meshAdded = False
     def add_mesh(self, mesh_json, xform_matrix, scale_factors=None):
         with open(mesh_json, 'r') as meshfile:
