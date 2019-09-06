@@ -8,6 +8,12 @@ Python3 wrappers for the *utils* package, as well as useful Python3 functions th
 
 ## Installation and Usage
 
+Clone this repository:
+
+```bash
+git clone --recurse-submodules https://github.com/goromal/python_utilities.git
+```
+
 Enter the *pylib* directory and build the python bindings with CMake:
 
 ```bash
