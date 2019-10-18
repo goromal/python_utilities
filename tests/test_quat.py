@@ -34,7 +34,7 @@ quat3 = from_euler(pi/4, pi/2, -1)
 print(quat3)
 print('roll: %f, pitch: %f, yaw: %f' % (quat3.roll(), quat3.pitch(), quat3.yaw()))
 print('euler:', quat3.euler())
-print('probably want to fix that like it is in matlab_utilities...')
+print('doesn\'t perform well near singularities, i.e. when pitch = pi/2')
 
 quat4 = from_two_unit_vectors([1,0,0],[0,1,0])
 print(quat4, quat4.euler())

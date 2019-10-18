@@ -3,19 +3,19 @@
     {
       "points": [0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
       "linecolor": "red",
-      "linestyle": "-",
+      "linestyle": "--",
       "linewidth": 1.5
     },
     {
       "points": [0.0, 0.0, 0.0, 0.0, 1.0, 0.0],
       "linecolor": "green",
-      "linestyle": "-",
+      "linestyle": "--",
       "linewidth": 1.5
     },
     {
       "points": [0.0, 0.0, 0.0, 0.0, 0.0, 1.0],
       "linecolor": "blue",
-      "linestyle": "-",
+      "linestyle": "--",
       "linewidth": 1.5
     }]
 }
