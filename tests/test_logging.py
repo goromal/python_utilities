@@ -9,7 +9,7 @@ mydata = np.array([[ 1, 2, 1],
                    [ 2, 1, 0],
                    [-1, 1, 2]])
 
-logging.matrixToLog('mydata.log', mydata)
+logging.matrixToLog('mydata.log', mydata, False)
 
 newdata = logging.logToMatrix('mydata.log', 3)
 
